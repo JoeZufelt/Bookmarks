@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    $('.carousel').carousel();
+  });
+
+
 //insert all api's we are utilizing
 
 //call for terms using ajax
