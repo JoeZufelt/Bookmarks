@@ -1,4 +1,22 @@
 
 .nav-wrapper{
-    background-color: #039be5;
+    background-color:#0c5e31;
+}
+.carousel{
+    height: 500px;
+}
+
+#reviews{
+    background-color: #0c5e31;
+    border: 2px solid black;
+    margin-top: 5px;
+    padding-bottom: 7%;
+    text-align: center;
+    height: 75px;
+}
+
+.card{
+    display: inline-block;
+    height:300px;
+    width: 400px;
 }
