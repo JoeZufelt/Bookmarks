@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //insert all api's we are utilizing
 
 //call for terms using ajax
@@ -42,3 +43,9 @@
 
 
 
+=======
+
+$(document).ready(function(){
+    $('.carousel').carousel();
+  });
+>>>>>>> ef5fdf4494d96abd1f5cd26e47294052d6ea3c74
