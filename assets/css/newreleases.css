@@ -1,0 +1,43 @@
+.nav-wrapper{
+    background-color:#0c5e31;
+}
+
+#newRelease{
+text-align: center;
+}
+
+h1{
+    text-align: center;
+    font-weight: lighter;
+}
+
+/* .searchNew{
+    align-content: center;
+    width: 50%;
+} */
+
+.rowOne{
+    margin-bottom: 100px;
+}
+
+.columnOne{
+    float: left;
+    width: 33%;
+    padding: 0 10px;
+  }
+
+  .cardOne{
+    padding: 16px;
+    text-align: center;
+  }
+
+  .columnTwo{
+    float: left;
+    width: 33%;
+    padding: 0 10px;
+  }
+
+  .cardTwo{
+    padding: 16px;
+    text-align: center;
+  }
