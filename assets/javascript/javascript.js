@@ -104,4 +104,8 @@
     }
     //insert to carousel here 
 
+    //after carousel alive, bring over to best sellers
+
+    //call new query for newest releases.. maybe?
+
 
