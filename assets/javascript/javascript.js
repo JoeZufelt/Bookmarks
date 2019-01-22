@@ -1,7 +1,5 @@
 $(document).ready(function(){
     $('.carousel').carousel();
-  });
-
 
 //insert all api's we are utilizing
 
@@ -122,3 +120,22 @@ $(document).ready(function(){
           $('#nyt-logo').css({'height':'80'})
         }
     });
+
+    // Display Meetup Jam
+    function displayMeetup() {
+
+        var zip = "32821";
+        var key = "4262c23e135a6578766a4f465f3740";
+        var meetupURL = "https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=50&category=18&page=20";
+        console.log(meetupURL);
+        $.ajax({
+            url: meetupURL,
+            method: "GET"
+        }).then(function(response){
+            var results = response.data;
+            console.log(results);
+        }); // End then
+    }; // End displayMeetup
+    displayMeetup();
+
+}); // End Document Ready
