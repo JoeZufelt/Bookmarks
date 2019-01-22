@@ -1,3 +1,8 @@
+$(document).ready(function(){
+    $('.carousel').carousel();
+
+//insert all api's we are utilizing
+
 //call for terms using ajax
     //good reads api key
 //    var queryURL = "https://www.goodreads.com/search.xml?" + XXX +"key=RQAh0rQcHphgz1zJoAbq7w&q=Ender%27s+Game"   
@@ -102,10 +107,33 @@
         });
 
     }
-    //insert to carousel here 
+    
+    $(window).scroll(function (event) {
+        var scroll = $(window).scrollTop();
+        if (scroll > 50) {
+          $('#masthead').css({'height':'50', 'padding' : '8'})
+          $('#nyt-logo').css({'height':'35'})
+        } else {
+          $('#masthead').css({'height':'100', 'padding':'10'});
+          $('#nyt-logo').css({'height':'80'})
+        }
+    });
 
-    //after carousel alive, bring over to best sellers
+    // Display Meetup Jam
+    function displayMeetup() {
 
-    //call new query for newest releases.. maybe?
+        var zip = "32821";
+        var key = "4262c23e135a6578766a4f465f3740";
+        var meetupURL = "https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=50&category=18&page=20";
+        console.log(meetupURL);
+        $.ajax({
+            url: meetupURL,
+            method: "GET"
+        }).then(function(response){
+            var results = response.data;
+            console.log(results);
+        }); // End then
+    }; // End displayMeetup
+    displayMeetup();
 
-
+}); // End Document Ready
