@@ -122,17 +122,26 @@ $(document).ready(function(){
     // Display Meetup Jam
     function displayMeetup() {
 
-        var zip = "32821";
+        var zip = "";
         var key = "4262c23e135a6578766a4f465f3740";
-        var radius = "25";
-        // var meetupURL = "https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=50&category=18&page=20";
+        var radius = "";
         var meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=" + radius + "&category=18&page=20";
         console.log(meetupURL);
         $.ajax({
             url: meetupURL,
             method: "GET"
         }).then(function(response){
-            var results = response.data;
+            for (i = 0; i < response.length; i++){
+                var meetupDiv = $("<div>");
+                var p = $("<p class='newMeetup'>");
+                var pLink = $("<a class='newMeetup'>");
+                var pName = $("<p class='newMeetup'>");
+                pName = response[i].name;
+                p = response[i].description;
+                pLink = response[i].link;
+                meetupDiv.append(pName, p, pLink);
+                $("#results").prepend(meetupDiv);
+            }
             console.log(response);
         }); // End then
     }; // End displayMeetup
