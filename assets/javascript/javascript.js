@@ -124,14 +124,16 @@ $(document).ready(function(){
 
         var zip = "32821";
         var key = "4262c23e135a6578766a4f465f3740";
-        var meetupURL = "https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=50&category=18&page=20";
+        var radius = "25";
+        // var meetupURL = "https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=50&category=18&page=20";
+        var meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=" + radius + "&category=18&page=20";
         console.log(meetupURL);
         $.ajax({
             url: meetupURL,
             method: "GET"
         }).then(function(response){
             var results = response.data;
-            console.log(results);
+            console.log(response);
         }); // End then
     }; // End displayMeetup
     displayMeetup();
