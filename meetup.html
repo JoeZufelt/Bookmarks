@@ -9,7 +9,7 @@
   <!-- Compiled and minified CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/meetup.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
 
@@ -19,13 +19,31 @@
 
   <nav>
     <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo"><i class="material-icons">book</i>Bookmarks</a>
+      <a href="#!" class="brand-logo"><i class="material-icons">book</i>Bookmarks</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="categories.html">Categories</a></li>
         <li><a href="newreleases.html">New Releases</a></li>
         <li><a href="meetup.html"> Meet Other Bookworms</a></li>
-
+        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
       </ul>
       </ul>
     </div>
   </nav>
+  <h1>Meet up with fellow bookworms!</h1>
+  <h4>Fill in your information below!</h4>
+  <br>
+  <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s6">
+            <input id="zip" type="text" placeholder="Zip Code">
+          </div>
+          <div class="input-field col s6">
+              <input id="radius" type="text" placeholder="Radius">
+            </div>
+        </div>
+      </form>
+    </div>  
+
+</body>
+</html>
