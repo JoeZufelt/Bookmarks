@@ -9,3 +9,10 @@ h4{
     text-align: center;
     font-weight: lighter;
 }
+#submit{
+    font-weight: lighter;
+    background-color: #0c5e31;
+}
+p{
+    text-align: center;
+}
