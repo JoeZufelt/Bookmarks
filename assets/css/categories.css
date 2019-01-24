@@ -1,7 +1,33 @@
 h1{
     text-align: center;
     font-weight: lighter;
+    
 }
 .nav-wrapper{
     background-color:#0c5e31;
+}
+
+#categories{
+    border-right: solid black 1px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+
+#search{
+    border: solid darkslategrey 2px;
+    text-align: center;
+    margin: 50px;
+    width: 500px;
+    font-weight: lighter;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    
+}
+
+footer{
+    background-color: #0c5e31;
+    height: 35px;
+    text-align: center;
+    font-weight: bolder;
 }
