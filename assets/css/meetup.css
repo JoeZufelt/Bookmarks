@@ -41,7 +41,13 @@ p {
     text-align: center;
 }
 
-/* #results {
-    border: 5px, solid;
-    margin: 10px, auto;
-} */
+footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #0c5e31;
+    height: 35px;
+    text-align: center;
+    font-weight: bolder;
+}

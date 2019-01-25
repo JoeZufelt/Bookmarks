@@ -148,9 +148,10 @@ $(document).ready(function(){
         $.ajax({
             url: meetupURL,
             method: "GET",
-            dataType: 'JSONP'
         }).then(function(response){
             for (i = 0; i < response.length; i++){
+                $("#zip").val("");
+                $("#radius").val("");
                 var meetupDiv = $("<div class='meeetupDiv'>");
                 var descriptionDiv = $("<div class='newDescription'>");
                 var linkDiv = $("<div class='linkDiv'>");
