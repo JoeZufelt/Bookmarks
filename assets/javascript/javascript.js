@@ -120,11 +120,11 @@ $(document).ready(function(){
     });
 
     // Display Meetup Jam
-    function displayMeetup() {
-
-        var zip = "";
+    $("#submit").on("click", function displayMeetup(event) {
+        event.preventDefault();
+        var zip = $("#zip").val().trim();
+        var radius = $("#radius").val().trim();
         var key = "4262c23e135a6578766a4f465f3740";
-        var radius = "";
         var meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=" + radius + "&category=18&page=20";
         console.log(meetupURL);
         $.ajax({
@@ -132,19 +132,21 @@ $(document).ready(function(){
             method: "GET"
         }).then(function(response){
             for (i = 0; i < response.length; i++){
-                var meetupDiv = $("<div>");
-                var p = $("<p class='newMeetup'>");
-                var pLink = $("<a class='newMeetup'>");
-                var pName = $("<p class='newMeetup'>");
-                pName = response[i].name;
-                p = response[i].description;
-                pLink = response[i].link;
-                meetupDiv.append(pName, p, pLink);
+                var meetupDiv = $("<div class='meeetupDiv'>");
+                var descriptionDiv = $("<div class='newDescription'>");
+                var linkDiv = $("<div class='linkDiv'>");
+                var newLink = $("<a class='newLink' target='_blank'>");
+                var newName = $("<div class='newName'>");
+                newName.append(response[i].name);
+                descriptionDiv.append(response[i].description);
+                newLink.attr("href", response[i].link);
+                newLink.html("Learn More");
+                linkDiv.append(newLink);
+                meetupDiv.append(newName, descriptionDiv, linkDiv);
                 $("#results").prepend(meetupDiv);
             }
             console.log(response);
         }); // End then
-    }; // End displayMeetup
-    displayMeetup();
+    }); // End displayMeetup
 
 }); // End Document Ready

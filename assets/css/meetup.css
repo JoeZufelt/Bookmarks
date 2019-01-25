@@ -1,18 +1,47 @@
-h1{
+/* body {
+    margin: 10px;
+} */
+
+h1 {
     text-align: center;
     font-weight: lighter;
 }
-.nav-wrapper{
+.nav-wrapper {
     background-color:#0c5e31;
 }
-h4{
+h4 {
     text-align: center;
     font-weight: lighter;
 }
-#submit{
+#submit {
     font-weight: lighter;
     background-color: #0c5e31;
 }
-p{
+p {
     text-align: center;
 }
+
+.meeetupDiv {
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 15px;
+    border-color: #0c5e31;
+    margin: 10px;
+    padding: 10px;
+}
+
+.newName {
+    font-size: 20px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.linkDiv {
+    font-size: 20px;
+    text-align: center;
+}
+
+/* #results {
+    border: 5px, solid;
+    margin: 10px, auto;
+} */
