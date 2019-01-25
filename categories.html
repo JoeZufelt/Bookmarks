@@ -9,27 +9,98 @@
   <!-- Compiled and minified CSS -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <link rel="stylesheet" href="assets/css/findgenres.css">
+  <link rel="stylesheet" href="assets/css/categories.css">
   <!-- Compiled and minified JavaScript -->
   <script src="https://www.gstatic.com/firebasejs/5.7.3/firebase.js"></script>
 
 </head>
 
 <body>
-
+<!--Nav Bar-->
   <nav>
     <div class="nav-wrapper">
       <a href="index.html" class="brand-logo"><i class="material-icons">book</i>Bookmarks</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="categories.html">Categories</a></li>
         <li><a href="newreleases.html">New Releases</a></li>
-        <li><a href="topchoices.html">Readers Top Choices</a></li>
         <li><a href="meetup.html"> Meet Other Bookworms</a></li>
-        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
       </ul>
       </ul>
     </div>
   </nav>
+<!--Right side of page, where search bar is-->
+  <div class="row" id="categoriesTitle">
+    <section class="col s9 push-s3">
+      <div>
+        <form>
+          <input type="text" class="search" id="search" placeholder="Search for Categories">
+          <button class="btn waves-effect waves-dark light-green darken-4" type="submit" name="action">Search
+            <i class="material-icons right">search</i>
+          </button>
+        </form>
+      </div>
+    </section>
+
+<!--Left side of page; includes categories with sub-categories and links NY times according to their names -->
+    <section class="col s3 pull-s9" id="categories">
+      <h1>Categories</h1>
+      <dl>
+        <dt>Fiction</dt>
+
+        <li><a href="https://www.nytimes.com/books/best-sellers/combined-print-and-e-book-fiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Fiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2F&pgtype=Reference">Combined
+            Print & E-book Fiction</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/hardcover-fiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Fiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fcombined-print-and-e-book-fiction%2F&pgtype=Reference">Hardcover
+            Fiction</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/trade-fiction-paperback/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Fiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fcombined-print-and-e-book-fiction%2F&pgtype=Reference">Paperback
+            Trade Fiction</a></li>
+
+        <dl></dl>
+        <dt>Non-Fiction</dt>
+        <li><a href="https://www.nytimes.com/books/best-sellers/combined-print-and-e-book-nonfiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Nonfiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fcombined-print-and-e-book-fiction%2F&pgtype=Reference">Combined
+            Print & E-book Non-Fiction</li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/hardcover-nonfiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Nonfiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fcombined-print-and-e-book-fiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=14A598244EC385ACA3B1A5E2EC51208B&gwt=pay">Hardcover
+            Non-Fiction</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/paperback-nonfiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Nonfiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fcombined-print-and-e-book-fiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=041A0497BD978BF6598FA3FB4A0F1CA5&gwt=pay">Paperback
+            Non-Fiction</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/advice-how-to-and-miscellaneous/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Nonfiction&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fpaperback-nonfiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=0AFCB1ADE9305B3B8BD78E8F8D532BFD&gwt=pay">Advice,
+            How-to, & Miscellaneous</a></li>
+        <dl></dl>
+
+        <dt>Children's</dt>
+        <li><a href="https://www.nytimes.com/books/best-sellers/childrens-middle-grade-hardcover/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Childrens&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fcombined-print-and-e-book-fiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=993BA64AB0549DA00B9BFB8412A45FF2&gwt=pay">Children's
+            Middle Grade Hardcover</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/picture-books/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Childrens&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fhardcover-nonfiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=975949460D1B417816EA8A25B7F19710&gwt=pay">Children's
+            Picture Books</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/series-books/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Childrens&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fpaperback-nonfiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=28B939CC68874F876FA87D8829E20063&gwt=pay">Children's
+            Series</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/young-adult-hardcover/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=Childrens&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fadvice-how-to-and-miscellaneous%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=126A9DEDDE897DDFC71FB9A0C2B73E9E&gwt=pay">Young
+            Adult Hardcover</a></li>
+        <dl></dl>
+
+        <dt>Monthly List</dt>
+        <li><a href="https://www.nytimes.com/books/best-sellers/audio-fiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=MonthlyLists&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Faudio-fiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=53B361F62463D5E76819FE7CAA4593ED&gwt=pay">Audio
+            Fiction</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/audio-nonfiction/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=MonthlyLists&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fpicture-books%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=B61D2530AF4F62658182328F7FE48928&gwt=pay">Audio
+            Non-Fiction</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/business-books/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=MonthlyLists&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fseries-books%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=27ACE16C22B76FC50970C5C63681F9D2&gwt=pay">Business</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/science/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=MonthlyLists&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Faudio-fiction%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=65EB5C68819EF1C370FFF902CB9062BD&gwt=pay">Science</a></li>
+        <li><a href="https://www.nytimes.com/books/best-sellers/sports/?module=DropDownNav&action=click&region=navbar&contentCollection=Books&version=MonthlyLists&referrer=https%3A%2F%2Fwww.nytimes.com%2Fbooks%2Fbest-sellers%2Fscience%2F&pgtype=Reference&mtrref=www.nytimes.com&gwh=DABC894B6321268DA45E2E590A77FDB0&gwt=pay">Sports
+            and Fitness</a></li>
+
+      </dl>
+    </section>
+  </div>
+
+
+<!--Footer-->
+  <footer>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2019 Copyright
+        <a class="grey-text text-lighten-4 right" href="index.html">Back to Top</a>
+      </div>
+    </div>
+  </footer>
 
   <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
