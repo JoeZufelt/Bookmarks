@@ -54,20 +54,21 @@ $(document).ready(function(){
         method: 'GET',
     })
     .then(response => {return response.json();})
-    .then(json => {console.log(json);})
-    .catch(error => {
-        console.log('NYT API Error: Defaulting to NYTimes archival data.');
-        updateBestSellers(nytimesArchive);
+    .then(json => {updateBestSellers(json);})
+    // .catch(error => {
+        // console.log('NYT API Error: Defaulting to NYTimes archival data.');
+        // updateBestSellers(nytimesArchive);
 
-    });
+    // });
 //insert to carousel here
     function updateBestSellers(nytimesBestSellers){
         nytimesBestSellers.results.forEach(function(book){
-            var isbn = book.isbn[1].isbn10;
-        
-        $('#best-seller-titles').append(listing);
-        $('#' + book.rank).attr('nyt-rank', book.rank);
-
+            var isbn = book.isbns[0].isbn10;
+            console.log(isbn);
+        // $('#best-seller-titles').append(book[0].book_details[0].title);
+        // $('#' + book.rank).attr('nyt-rank', book.rank);
+        var carousel = $("#iDontLikeThis");
+        carousel.empty();
         updateCover(book.rank, isbn);
         });
     }
@@ -78,19 +79,43 @@ $(document).ready(function(){
         })
         .then(response => {return response.json();})
         .then(data => {
-            
-            console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
+            console.log(data);
+            // console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
+            if (data.totalItems === 0) return;
             var img = data.items[0].volumeInfo.imageLinks.thumbnail;
+            console.log(img)
             // img = img.replace(/^http:\/\//i, 'https://');
-            $('#cover-' + id).attr('src', img);
-            $(".user-book").append("img");
+            // $('#cover-' + id).attr('src', img);
+            // $(".user-book").append("img");
+
+            var carousel = $("#iDontLikeThis");
+            // carousel.empty();
+            var imageElement = $("<img>");
+            imageElement.attr("src", img);
+            imageElement.addClass('img-responsive');
+            var aTag = $("<a>");
+            var isbns = data.items[0].volumeInfo.industryIdentifiers;
+            var isbn10;
+            isbns.forEach(function(item) {
+                if(item.type === "ISBN_10") {
+                    isbn10 = item.identifier;
+                }
+            })
+            aTag.attr("href", "https://amazon.com/gp/product/" + isbn10);
+            aTag.attr('target', "__BLANK");
+            aTag.addClass("carousel-item");
+            aTag.append(imageElement)
+            aTag.append(data.items[0].volumeInfo.title);
+            carousel.append(aTag);
+            carousel.carousel();
+
         })
         .catch(error => {
             console.log(error);
             // console.log('Google API Error: Defaulting to archival images for book #' + id + 'ISBN: ' + isbn);
-            var index = id - 1;
+            // var index = id - 1;
             // var img = archivedImages[index];
-            $('#cover-' + id).attr('src', img);
+            // $('#cover-' + id).attr('src', img);
         });
         
 
@@ -100,18 +125,20 @@ $(document).ready(function(){
     // $('.carousel').carousel('methodName');
     // $('.carousel').carousel('methodName', paramName);
     
-    $(window).scroll(function (event) {
-        var scroll = $(window).scrollTop();
-        if (scroll > 50) {
-          $('#masthead').css({'height':'50', 'padding' : '8'})
-          $('#nyt-logo').css({'height':'35'})
-        } else {
-          $('#masthead').css({'height':'100', 'padding':'10'});
-          $('#nyt-logo').css({'height':'80'})
-        }
-    });
+    // $(window).scroll(function (event) {
+    //     var scroll = $(window).scrollTop();
+    //     if (scroll > 50) {
+    //       $('#masthead').css({'height':'50', 'padding' : '8'})
+    //       $('#nyt-logo').css({'height':'35'})
+    //     } else {
+    //       $('#masthead').css({'height':'100', 'padding':'10'});
+    //       $('#nyt-logo').css({'height':'80'})
+    //     }
+    // });
 
     // Display Meetup Jam
+
+     
     function displayMeetup() {
 
         var zip = "32821";
@@ -120,7 +147,8 @@ $(document).ready(function(){
         console.log(meetupURL);
         $.ajax({
             url: meetupURL,
-            method: "GET"
+            method: "GET",
+            dataType: 'JSONP'
         }).then(function(response){
             var results = response.data;
             console.log(results);
