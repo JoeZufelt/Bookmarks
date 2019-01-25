@@ -50,7 +50,8 @@ $(document).ready(function(){
 //         console.log('Fetch Error :-S', err);
 //     });
 //API call using fetch -- above is the prerequisite code for utilizing the fetch method
-    fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0', {
+fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0', {
+    // fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0', {
         method: 'GET',
     })
     .then(response => {return response.json();})
@@ -62,27 +63,70 @@ $(document).ready(function(){
     // });
 //insert to carousel here
     function updateBestSellers(nytimesBestSellers){
-        nytimesBestSellers.results.forEach(function(book){
-            var isbn = book.isbns[0].isbn10;
-            console.log(isbn);
-        // $('#best-seller-titles').append(book[0].book_details[0].title);
-        // $('#' + book.rank).attr('nyt-rank', book.rank);
+        console.log(nytimesBestSellers);
         var carousel = $("#iDontLikeThis");
         carousel.empty();
-        updateCover(book.rank, isbn);
+        nytimesBestSellers.results.books.forEach(function(book){
+            // var isbn = book.isbns[0].isbn10;
+            // $('#best-seller-titles').append(book[0].book_details[0].title);
+            // $('#' + book.rank).attr('nyt-rank', book.rank);
+            // updateCover(book.rank, isbn); // only book 
+            updateCover(book); // only book 
         });
     }
     
-    function updateCover(id, isbn){
-        fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s', {
-            method: 'GET',
-        })
-        .then(response => {return response.json();})
-        .then(data => {
-            console.log(data);
+    // function updateCover(id, isbn){ // change to book 
+    //     fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s', {
+    //         method: 'GET',// kill below fetch
+    //     })
+    //     .then(response => {return response.json();})
+    //     .then(data => {
+    //         console.log(data);
+    //         // console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
+    //         if (data.totalItems === 0) return;
+    //         var img = data.items[0].volumeInfo.imageLinks.thumbnail;
+    //         console.log(img)
+    //         // img = img.replace(/^http:\/\//i, 'https://');
+    //         // $('#cover-' + id).attr('src', img);
+    //         // $(".user-book").append("img");
+
+    //         var carousel = $("#iDontLikeThis");
+    //         // carousel.empty();
+    //         var imageElement = $("<img>");
+    //         imageElement.attr("src", img);
+    //         imageElement.addClass('img-responsive');
+    //         var aTag = $("<a>");
+    //         var isbns = data.items[0].volumeInfo.industryIdentifiers;
+    //         var isbn10;
+    //         isbns.forEach(function(item) {
+    //             if(item.type === "ISBN_10") {
+    //                 isbn10 = item.identifier;
+    //             }
+    //         })
+    //         aTag.attr("href", "https://amazon.com/gp/product/" + isbn10);
+    //         aTag.attr('target', "__BLANK");
+    //         aTag.addClass("carousel-item");
+    //         aTag.append(imageElement)
+    //         aTag.append(data.items[0].volumeInfo.title);
+    //         carousel.append(aTag);
+    //         carousel.carousel();
+
+    //     })
+    //     .catch(error => {
+    //         console.log(error);
+    //         // console.log('Google API Error: Defaulting to archival images for book #' + id + 'ISBN: ' + isbn);
+    //         // var index = id - 1;
+    //         // var img = archivedImages[index];
+    //         // $('#cover-' + id).attr('src', img);
+    //     });
+        
+
+    // }
+    function updateCover(book){ // change to book 
+            console.log(book);
             // console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
-            if (data.totalItems === 0) return;
-            var img = data.items[0].volumeInfo.imageLinks.thumbnail;
+            // if(!book.book_image) return;
+            var img = book.book_image;
             console.log(img)
             // img = img.replace(/^http:\/\//i, 'https://');
             // $('#cover-' + id).attr('src', img);
@@ -94,33 +138,17 @@ $(document).ready(function(){
             imageElement.attr("src", img);
             imageElement.addClass('img-responsive');
             var aTag = $("<a>");
-            var isbns = data.items[0].volumeInfo.industryIdentifiers;
-            var isbn10;
-            isbns.forEach(function(item) {
-                if(item.type === "ISBN_10") {
-                    isbn10 = item.identifier;
-                }
-            })
+            var isbn10 = book.isbns[0].isbn10;
             aTag.attr("href", "https://amazon.com/gp/product/" + isbn10);
             aTag.attr('target', "__BLANK");
             aTag.addClass("carousel-item");
             aTag.append(imageElement)
-            aTag.append(data.items[0].volumeInfo.title);
+            aTag.append(book.title);
             carousel.append(aTag);
             carousel.carousel();
 
-        })
-        .catch(error => {
-            console.log(error);
-            // console.log('Google API Error: Defaulting to archival images for book #' + id + 'ISBN: ' + isbn);
-            // var index = id - 1;
-            // var img = archivedImages[index];
-            // $('#cover-' + id).attr('src', img);
-        });
-        
-
     }
-    updateCover()
+    // updateCover()
    
     // $('.carousel').carousel('methodName');
     // $('.carousel').carousel('methodName', paramName);
