@@ -16,19 +16,25 @@
 </head>
 
 <body>
-<!--Nav Bar-->
+  <!--Nav Bar-->
   <nav>
     <div class="nav-wrapper">
-      <a href="index.html" class="brand-logo"><i class="material-icons">book</i>Bookmarks</a>
+      <a href="index.html" class="brand-logo">Bookmarks</a>
+      <a href="index.html" class="sidenav-trigger" data-target="mobile">
+        <i class="material-icons">menu</i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="categories.html">Categories</a></li>
-        <li><a href="newreleases.html">New Releases</a></li>
         <li><a href="meetup.html"> Meet Other Bookworms</a></li>
-      </ul>
       </ul>
     </div>
   </nav>
-<!--Right side of page, where search bar is-->
+
+  <ul class="sidenav" id="mobile">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="categories.html">Categories</a></li>
+    <li><a href="meetup.html"> Meet Other Bookworms</a></li>
+  </ul>
+  <!--Right side of page, where search bar is-->
   <div class="row" id="categoriesTitle">
     <section class="col s9 push-s3">
       <div>
@@ -40,11 +46,11 @@
         </form>
       </div>
       <div id="categoryDump">
-        
+
       </div>
     </section>
 
-<!--Left side of page; includes categories with sub-categories and links NY times according to their names -->
+    <!--Left side of page; includes categories with sub-categories and links NY times according to their names -->
     <section class="col s3 pull-s9" id="categories">
       <h1>Categories</h1>
       <dl>
@@ -95,7 +101,7 @@
   </div>
 
 
-<!--Footer-->
+  <!--Footer-->
   <footer>
     <div class="footer-copyright">
       <div class="container">
