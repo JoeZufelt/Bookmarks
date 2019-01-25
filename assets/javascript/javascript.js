@@ -217,3 +217,34 @@ var jsoncall = {
         ]
     }
 }
+
+// Category Page Function
+$("#search-btn").on("click", function displayCategory() {
+    event.preventDefault();
+    var category = $("#search").val().trim();
+    var categoryURL = "https://www.googleapis.com/books/v1/volumes?q=" + category + "&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s"
+    console.log(categoryURL);
+
+    $.ajax({
+        url: categoryURL,
+        method: "GET",
+    }).then(function(response){
+        for (i = 0; i < response.length; i++){
+            $("#search").val("");
+            var categoryDiv = $("<div class='category'>");
+            var bookIMG = $("<img class='bookIMG'>");
+            var title = $("<div class='bookTitle'>");
+            var author = $("<div class='bookAuthor'>");
+            bookIMG.attr("src", response[i].volumeInfo.imageLinks.thumbnail);
+            title.append(response[i].volumeInfo.title);
+            author.append(response[i].volumeInfo.authors);
+            categoryDiv.append(bookIMG, title, author);
+            $("#categoryDump").prepend(categoryDiv);
+        } // End for loop
+        console.log(resposne);
+    }) //End then
+
+}); // End click to displayCategory
+
+    // var testURL = "https://www.googleapis.com/books/v1/volumes?q=fantasy&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s"
+    // console.log(testURL);
