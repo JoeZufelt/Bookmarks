@@ -54,72 +54,90 @@ $(document).ready(function(){
         method: 'GET',
     })
     .then(response => {return response.json();})
-    .then(json => {console.log(json);})
-    .catch(error => {
-        console.log('NYT API Error: Defaulting to NYTimes archival data.');
-        updateBestSellers(nytimesArchive);
+    .then(json => {updateBestSellers(json);})
+    // .catch(error => {
+        // console.log('NYT API Error: Defaulting to NYTimes archival data.');
+        // updateBestSellers(nytimesArchive);
 
-    });
+    // });
 //insert to carousel here
     function updateBestSellers(nytimesBestSellers){
         nytimesBestSellers.results.forEach(function(book){
-            var isbn = book.isbns[1].isbn10;
-            var bookInfo = book.rank_last_week || 'n/a';
-            var lastWeekRank = book.rank_last_week || 'n/a';
-            var weeksOnList = book.week_on_list || 'New this week!';
-            var listing = 
-            '<div id="' + book.rank + '" class="entry">' + 
-            '<p>' + 
-            '<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/387928/book%20placeholder.png" class="book-cover" id="cover-' + book.rank + '">' + 
-            '</p>' + 
-            '<h2><a href="' + book.amazon_product_url + '" target="_blank">' + bookInfo.title + '</a></h2>' +
-            '<h4>By ' + bookInfo.author + '</h4>' +
-            '<h4 class="publisher">' + bookInfo.publisher + '</h4>' +
-            '<p>' + bookInfo.description + '</p>' + 
-            '<div class="stats">' +
-              '<hr>' + 
-              '<p>Last Week: ' + lastWeekRank + '</p>' + 
-              '<p>Weeks on list: ' + weeksOnList + '</p>' +
-            '</div>' +
-          '</div>';
-        $('#best-seller-titles').append(listing);
-        $('#' + book.rank).attr('nyt-rank', book.rank);
-
+            var isbn = book.isbns[0].isbn10;
+            console.log(isbn);
+        // $('#best-seller-titles').append(book[0].book_details[0].title);
+        // $('#' + book.rank).attr('nyt-rank', book.rank);
+        var carousel = $("#iDontLikeThis");
+        carousel.empty();
         updateCover(book.rank, isbn);
         });
     }
+    
     function updateCover(id, isbn){
-        fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + "&key=AIzaSyBTKHDjDKY0IhsQP7RY5KViSUNkxNc5gmc", {
-            method: 'get',
+        fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s', {
+            method: 'GET',
         })
         .then(response => {return response.json();})
         .then(data => {
+            console.log(data);
+            // console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
+            if (data.totalItems === 0) return;
             var img = data.items[0].volumeInfo.imageLinks.thumbnail;
-            img = img.replace(/^http:\/\//i, 'https://');
-            $('#cover-' + id).attr('src', img);
+            console.log(img)
+            // img = img.replace(/^http:\/\//i, 'https://');
+            // $('#cover-' + id).attr('src', img);
+            // $(".user-book").append("img");
+
+            var carousel = $("#iDontLikeThis");
+            // carousel.empty();
+            var imageElement = $("<img>");
+            imageElement.attr("src", img);
+            imageElement.addClass('img-responsive');
+            var aTag = $("<a>");
+            var isbns = data.items[0].volumeInfo.industryIdentifiers;
+            var isbn10;
+            isbns.forEach(function(item) {
+                if(item.type === "ISBN_10") {
+                    isbn10 = item.identifier;
+                }
+            })
+            aTag.attr("href", "https://amazon.com/gp/product/" + isbn10);
+            aTag.attr('target', "__BLANK");
+            aTag.addClass("carousel-item");
+            aTag.append(imageElement)
+            aTag.append(data.items[0].volumeInfo.title);
+            carousel.append(aTag);
+            carousel.carousel();
+
         })
         .catch(error => {
             console.log(error);
-            console.log('Google API Error: Defaulting to archival images for book #' + id + 'ISBN: ' + isbn);
-            var index = id - 1;
-            var img = archivedImages[index];
-            $('#cover-' + id).attr('src', img);
+            // console.log('Google API Error: Defaulting to archival images for book #' + id + 'ISBN: ' + isbn);
+            // var index = id - 1;
+            // var img = archivedImages[index];
+            // $('#cover-' + id).attr('src', img);
         });
+        
 
     }
+    updateCover()
+   
+    // $('.carousel').carousel('methodName');
+    // $('.carousel').carousel('methodName', paramName);
     
-    $(window).scroll(function (event) {
-        var scroll = $(window).scrollTop();
-        if (scroll > 50) {
-          $('#masthead').css({'height':'50', 'padding' : '8'})
-          $('#nyt-logo').css({'height':'35'})
-        } else {
-          $('#masthead').css({'height':'100', 'padding':'10'});
-          $('#nyt-logo').css({'height':'80'})
-        }
-    });
+    // $(window).scroll(function (event) {
+    //     var scroll = $(window).scrollTop();
+    //     if (scroll > 50) {
+    //       $('#masthead').css({'height':'50', 'padding' : '8'})
+    //       $('#nyt-logo').css({'height':'35'})
+    //     } else {
+    //       $('#masthead').css({'height':'100', 'padding':'10'});
+    //       $('#nyt-logo').css({'height':'80'})
+    //     }
+    // });
 
     // Display Meetup Jam
+
     $("#submit").on("click", function displayMeetup(event) {
         event.preventDefault();
         var zip = $("#zip").val().trim();
@@ -129,7 +147,8 @@ $(document).ready(function(){
         console.log(meetupURL);
         $.ajax({
             url: meetupURL,
-            method: "GET"
+            method: "GET",
+            dataType: 'JSONP'
         }).then(function(response){
             for (i = 0; i < response.length; i++){
                 var meetupDiv = $("<div class='meeetupDiv'>");
@@ -150,3 +169,22 @@ $(document).ready(function(){
     }); // End displayMeetup
 
 }); // End Document Ready
+
+var jsoncall = {
+    "web": {
+        "client_id": "443253864577-d2jcibe4bj6p2h65hdg8vj8cl8ktra6b.apps.googleusercontent.com",
+        "project_id": "book-recommender-228801",
+        "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+        "token_uri": "https://oauth2.googleapis.com/token",
+        "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+        "client_secret": "xLDBxEu0tRvNFPNkOE89LIZe",
+        "redirect_uris": [
+            "https://book-recommender-228801.firebaseapp.com/__/auth/handler"
+        ],
+        "javascript_origins": [
+            "http://localhost",
+            "http://localhost:5000",
+            "https://book-recommender-228801.firebaseapp.com"
+        ]
+    }
+}
