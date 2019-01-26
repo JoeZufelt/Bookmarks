@@ -83,8 +83,6 @@ fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json
         }); // End then
     }); // End displayMeetup
 
-}); // End Document Ready
-
 var jsoncall = {
     "web": {
         "client_id": "443253864577-d2jcibe4bj6p2h65hdg8vj8cl8ktra6b.apps.googleusercontent.com",
@@ -108,26 +106,119 @@ var jsoncall = {
 $("#search-btn").on("click", function displayCategory() {
     event.preventDefault();
     var category = $("#search").val().trim();
-    var categoryURL = "https://www.googleapis.com/books/v1/volumes?q=" + category + "&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s"
+    var categoryURL = "https://www.googleapis.com/books/v1/volumes?q=genre=" + category + "&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s"
     console.log(categoryURL);
 
     $.ajax({
         url: categoryURL,
         method: "GET",
     }).then(function(response){
-        for (i = 0; i < response.length; i++){
-            $("#search").val("");
-            var categoryDiv = $("<div class='category'>");
-            var bookIMG = $("<img class='bookIMG'>");
-            var title = $("<div class='bookTitle'>");
-            var author = $("<div class='bookAuthor'>");
-            bookIMG.attr("src", response[i].volumeInfo.imageLinks.thumbnail);
-            title.append(response[i].volumeInfo.title);
-            author.append(response[i].volumeInfo.authors);
-            categoryDiv.append(bookIMG, title, author);
-            $("#categoryDump").prepend(categoryDiv);
-        } // End for loop
-        console.log(resposne);
+        // for (i = 0; i < items[i].length; i++){
+        //     $("#search").val("");
+        //     var categoryDiv = $("<div class='category'>");
+        //     var bookIMG = $("<img class='bookIMG'>");
+        //     var title = $("<div class='bookTitle'>");
+        //     var author = $("<div class='bookAuthor'>");
+        //     bookIMG.attr("src", response.items[i].volumeInfo.imageLinks.thumbnail);
+        //     title.append(response.items[i].volumeInfo.title);
+        //     author.append(response.items[i].volumeInfo.authors);
+        //     categoryDiv.append(bookIMG, title, author);
+        //     $("#dump").prepend(categoryDiv);
+        // } // End for loop
+        $("#search").val("");
+        $("#dump").html("");
+            var categoryDiv0 = $("<div class='category'>");
+            var bookIMG0 = $("<img class='bookIMG'>");
+            var title0 = $("<div class='bookTitle'>");
+            var author0 = $("<div class='bookAuthor'>");
+            bookIMG0.attr("src", response.items[0].volumeInfo.imageLinks.thumbnail);
+            title0.append(response.items[0].volumeInfo.title);
+            author0.append(response.items[0].volumeInfo.authors);
+            categoryDiv0.append(bookIMG0, title0, author0);
+            $("#dump").append(categoryDiv0);
+            var categoryDiv1 = $("<div class='category'>");
+            var bookIMG1 = $("<img class='bookIMG'>");
+            var title1 = $("<div class='bookTitle'>");
+            var author1 = $("<div class='bookAuthor'>");
+            bookIMG1.attr("src", response.items[1].volumeInfo.imageLinks.thumbnail);
+            title1.append(response.items[1].volumeInfo.title);
+            author1.append(response.items[1].volumeInfo.authors);
+            categoryDiv1.append(bookIMG1, title1, author1);
+            $("#dump").append(categoryDiv1);
+            var categoryDiv2 = $("<div class='category'>");
+            var bookIMG2 = $("<img class='bookIMG'>");
+            var title2 = $("<div class='bookTitle'>");
+            var author2 = $("<div class='bookAuthor'>");
+            bookIMG2.attr("src", response.items[2].volumeInfo.imageLinks.thumbnail);
+            title2.append(response.items[2].volumeInfo.title);
+            author2.append(response.items[2].volumeInfo.authors);
+            categoryDiv2.append(bookIMG2, title2, author2);
+            $("#dump").append(categoryDiv2);
+            var categoryDiv3 = $("<div class='category'>");
+            var bookIMG3 = $("<img class='bookIMG'>");
+            var title3 = $("<div class='bookTitle'>");
+            var author3 = $("<div class='bookAuthor'>");
+            bookIMG3.attr("src", response.items[3].volumeInfo.imageLinks.thumbnail);
+            title3.append(response.items[3].volumeInfo.title);
+            author3.append(response.items[3].volumeInfo.authors);
+            categoryDiv3.append(bookIMG3, title3, author3);
+            $("#dump").append(categoryDiv3);
+            var categoryDiv4 = $("<div class='category'>");
+            var bookIMG4 = $("<img class='bookIMG'>");
+            var title4 = $("<div class='bookTitle'>");
+            var author4 = $("<div class='bookAuthor'>");
+            bookIMG4.attr("src", response.items[4].volumeInfo.imageLinks.thumbnail);
+            title4.append(response.items[4].volumeInfo.title);
+            author4.append(response.items[4].volumeInfo.authors);
+            categoryDiv4.append(bookIMG4, title4, author4);
+            $("#dump").append(categoryDiv4);
+            var categoryDiv5 = $("<div class='category'>");
+            var bookIMG5 = $("<img class='bookIMG'>");
+            var title5 = $("<div class='bookTitle'>");
+            var author5 = $("<div class='bookAuthor'>");
+            bookIMG5.attr("src", response.items[5].volumeInfo.imageLinks.thumbnail);
+            title5.append(response.items[5].volumeInfo.title);
+            author5.append(response.items[5].volumeInfo.authors);
+            categoryDiv5.append(bookIMG5, title5, author5);
+            $("#dump").append(categoryDiv5);
+            var categoryDiv6 = $("<div class='category'>");
+            var bookIMG6 = $("<img class='bookIMG'>");
+            var title6 = $("<div class='bookTitle'>");
+            var author6 = $("<div class='bookAuthor'>");
+            bookIMG6.attr("src", response.items[6].volumeInfo.imageLinks.thumbnail);
+            title6.append(response.items[6].volumeInfo.title);
+            author6.append(response.items[6].volumeInfo.authors);
+            categoryDiv6.append(bookIMG6, title6, author6);
+            $("#dump").append(categoryDiv6);
+            var categoryDiv7 = $("<div class='category'>");
+            var bookIMG7 = $("<img class='bookIMG'>");
+            var title7 = $("<div class='bookTitle'>");
+            var author7 = $("<div class='bookAuthor'>");
+            bookIMG7.attr("src", response.items[7].volumeInfo.imageLinks.thumbnail);
+            title7.append(response.items[7].volumeInfo.title);
+            author7.append(response.items[7].volumeInfo.authors);
+            categoryDiv7.append(bookIMG7, title7, author7);
+            $("#dump").append(categoryDiv7);
+            var categoryDiv8 = $("<div class='category'>");
+            var bookIMG8 = $("<img class='bookIMG'>");
+            var title8 = $("<div class='bookTitle'>");
+            var author8 = $("<div class='bookAuthor'>");
+            bookIMG8.attr("src", response.items[8].volumeInfo.imageLinks.thumbnail);
+            title8.append(response.items[8].volumeInfo.title);
+            author8.append(response.items[8].volumeInfo.authors);
+            categoryDiv8.append(bookIMG8, title8, author8);
+            $("#dump").append(categoryDiv8);
+            var categoryDiv9 = $("<div class='category'>");
+            var bookIMG9 = $("<img class='bookIMG'>");
+            var title9 = $("<div class='bookTitle'>");
+            var author9 = $("<div class='bookAuthor'>");
+            bookIMG9.attr("src", response.items[9].volumeInfo.imageLinks.thumbnail);
+            title9.append(response.items[9].volumeInfo.title);
+            author9.append(response.items[9].volumeInfo.authors);
+            categoryDiv9.append(bookIMG9, title9, author9);
+            $("#dump").append(categoryDiv9);
+        console.log(response);
     }) //End then
 
-}); 
+}); // End Category Function
+}); // End Document Ready

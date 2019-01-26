@@ -13,7 +13,6 @@ h1{
     font-size: 16px;
 }
 
-
 #search{
     border: solid darkslategrey 2px;
     text-align: center;
@@ -21,8 +20,28 @@ h1{
     width: 500px;
     font-weight: lighter;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
 
-    
+.category {
+    margin: 15px;
+}
+
+.bookIMG {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.bookTitle {
+    text-align: center;
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.bookAuthor {
+    text-align: center;
+    font-style: italic;
+    font-size: 15px;
 }
 
 footer{
