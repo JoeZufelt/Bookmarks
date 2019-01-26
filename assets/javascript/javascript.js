@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    $('.sidenav').sidenav();
     $('.carousel').carousel();
 
 //insert all api's we are utilizing
