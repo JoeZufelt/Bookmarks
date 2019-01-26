@@ -50,3 +50,43 @@ footer{
     text-align: center;
     font-weight: bolder;
 }
+
+@media screen and (max-width:980px) {
+    h1{
+      font-size: 32px;
+    }
+}
+
+@media screen and (max-width:768px) {
+    h1{
+      font-size: 24px;
+    }
+}
+
+@media screen and (max-width:640px) {
+    h1{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width:980px) {
+    #search{
+        width: 75%;
+        display: block;
+    }
+}
+
+@media screen and (max-width:768px) {
+    #search{
+      width: 50%;
+      display: block;
+    }
+}
+
+@media screen and (max-width:640px) {
+    #search{
+        width: 50%;
+        display: block;
+    }
+}
+
