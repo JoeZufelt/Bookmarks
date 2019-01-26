@@ -2,168 +2,53 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.carousel').carousel();
 
-//insert all api's we are utilizing
-
-//call for terms using ajax
-    //good reads api key
-//    var queryURL = "https://www.goodreads.com/search.xml?" + XXX +"key=RQAh0rQcHphgz1zJoAbq7w&q=Ender%27s+Game"   
-    //key: RQAh0rQcHphgz1zJoAbq7w
-        //secret: Fcgh3OtLG1nVAiYPmlxXflA2qDODFArgfXtCDvHXKt4
-    //google api key 
-    // var queryURL ="https://www.googleapis.com/books/v1/" + XXX +"handleResponse"
-
-    // var queryURL ="https://api.nytimes.com/svc/books/v3/lists.json"
-    // NYT api key 4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0
-
-//   var queryURL = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0";
-
-
-//XMLHttpRequest 
-// function reqListener(){
-//     var data = JSON.parse(this.responseText);
-//     console.log(data);
-// }
-
-//Basic Fetch request
-// function reqError(err) {
-//     console.log('Fetch Error :-S', err);
-// }
-// var oReq = new XMLHttpRequest();
-// oReq.onload = reqListener;
-// oReq.onerror = reqError;
-// oReq.open('get', './api/some.json', true);
-// oReq.send();
-
-// fetch('./api/some.json')
-//     .then(
-//         function(response){
-//             if (response.status !== 200) {
-//                 console.log('looks like there was a problem. Status Code: ' + response.status);
-//                 return;
-//             }
-//             //Examine the text in the response
-//             response.json().then(function(data){
-//                 console.log(data);
-//             });
-//         }
-//     )
-//     .catch(function(err){
-//         console.log('Fetch Error :-S', err);
-//     });
 //API call using fetch -- above is the prerequisite code for utilizing the fetch method
 fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0', {
-    // fetch('https://api.nytimes.com/svc/books/v3/lists.json?list-name=hardcover-fiction&api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0', {
+    
         method: 'GET',
     })
     .then(response => {return response.json();})
     .then(json => {updateBestSellers(json);})
-    // .catch(error => {
-        // console.log('NYT API Error: Defaulting to NYTimes archival data.');
-        // updateBestSellers(nytimesArchive);
 
-    // });
+
+    
 //insert to carousel here
     function updateBestSellers(nytimesBestSellers){
         console.log(nytimesBestSellers);
         var carousel = $("#iDontLikeThis");
         carousel.empty();
         nytimesBestSellers.results.books.forEach(function(book){
-            // var isbn = book.isbns[0].isbn10;
-            // $('#best-seller-titles').append(book[0].book_details[0].title);
-            // $('#' + book.rank).attr('nyt-rank', book.rank);
-            // updateCover(book.rank, isbn); // only book 
+
             updateCover(book); // only book 
         });
     }
     
-    // function updateCover(id, isbn){ // change to book 
-    //     fetch('https://www.googleapis.com/books/v1/volumes?q=isbn:' + isbn + '&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s', {
-    //         method: 'GET',// kill below fetch
-    //     })
-    //     .then(response => {return response.json();})
-    //     .then(data => {
-    //         console.log(data);
-    //         // console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
-    //         if (data.totalItems === 0) return;
-    //         var img = data.items[0].volumeInfo.imageLinks.thumbnail;
-    //         console.log(img)
-    //         // img = img.replace(/^http:\/\//i, 'https://');
-    //         // $('#cover-' + id).attr('src', img);
-    //         // $(".user-book").append("img");
-
-    //         var carousel = $("#iDontLikeThis");
-    //         // carousel.empty();
-    //         var imageElement = $("<img>");
-    //         imageElement.attr("src", img);
-    //         imageElement.addClass('img-responsive');
-    //         var aTag = $("<a>");
-    //         var isbns = data.items[0].volumeInfo.industryIdentifiers;
-    //         var isbn10;
-    //         isbns.forEach(function(item) {
-    //             if(item.type === "ISBN_10") {
-    //                 isbn10 = item.identifier;
-    //             }
-    //         })
-    //         aTag.attr("href", "https://amazon.com/gp/product/" + isbn10);
-    //         aTag.attr('target', "__BLANK");
-    //         aTag.addClass("carousel-item");
-    //         aTag.append(imageElement)
-    //         aTag.append(data.items[0].volumeInfo.title);
-    //         carousel.append(aTag);
-    //         carousel.carousel();
-
-    //     })
-    //     .catch(error => {
-    //         console.log(error);
-    //         // console.log('Google API Error: Defaulting to archival images for book #' + id + 'ISBN: ' + isbn);
-    //         // var index = id - 1;
-    //         // var img = archivedImages[index];
-    //         // $('#cover-' + id).attr('src', img);
-    //     });
-        
-
-    // }
+    // function pulls cover of book and inserts into carousel
     function updateCover(book){ // change to book 
             console.log(book);
-            // console.log(data.items[0].volumeInfo.imageLinks.thumbnail)
-            // if(!book.book_image) return;
+
             var img = book.book_image;
-            console.log(img)
-            // img = img.replace(/^http:\/\//i, 'https://');
-            // $('#cover-' + id).attr('src', img);
-            // $(".user-book").append("img");
+            console.log(img);
 
             var carousel = $("#iDontLikeThis");
-            // carousel.empty();
             var imageElement = $("<img>");
             imageElement.attr("src", img);
+            //makes image responsive
             imageElement.addClass('img-responsive');
             var aTag = $("<a>");
             var isbn10 = book.isbns[0].isbn10;
+            //attr pulls book cover from amazon using the isbn10 number
             aTag.attr("href", "https://amazon.com/gp/product/" + isbn10);
             aTag.attr('target', "__BLANK");
             aTag.addClass("carousel-item");
+            //adds image and appends to github
             aTag.append(imageElement)
             aTag.append(book.title);
             carousel.append(aTag);
             carousel.carousel();
 
     }
-    // updateCover()
    
-    // $('.carousel').carousel('methodName');
-    // $('.carousel').carousel('methodName', paramName);
-    
-    // $(window).scroll(function (event) {
-    //     var scroll = $(window).scrollTop();
-    //     if (scroll > 50) {
-    //       $('#masthead').css({'height':'50', 'padding' : '8'})
-    //       $('#nyt-logo').css({'height':'35'})
-    //     } else {
-    //       $('#masthead').css({'height':'100', 'padding':'10'});
-    //       $('#nyt-logo').css({'height':'80'})
-    //     }
-    // });
 
     // Display Meetup Jam
 
@@ -245,7 +130,4 @@ $("#search-btn").on("click", function displayCategory() {
         console.log(resposne);
     }) //End then
 
-}); // End click to displayCategory
-
-    // var testURL = "https://www.googleapis.com/books/v1/volumes?q=fantasy&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s"
-    // console.log(testURL);
+}); 
