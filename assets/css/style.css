@@ -35,6 +35,9 @@ h1{
     width: 347px;
     margin: 4px;
 }
+.card .card-content{
+    margin: 0px !important
+}
 .card-reveal{
     background-color: #ffcc80;
 }
