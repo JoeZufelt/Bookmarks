@@ -1,7 +1,3 @@
-// var nyt_meatball = config.nyt_meatball;
-// var meetup_meatball = config.meetup_meatball;
-// var google_meatball = config.google_meatball;
-
 $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.carousel').carousel();
