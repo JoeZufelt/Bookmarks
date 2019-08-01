@@ -3,8 +3,8 @@ $(document).ready(function(){
     $('.carousel').carousel();
 
     var nyt_meatball = config.nyt_meatball;
-    var meetup_meatball = config.meetup_meatball;
-    var google_meatball = config.google_meatball;
+    // var meetup_meatball = config.meetup_meatball;
+    // var google_meatball = config.google_meatball;
 
 //API call using fetch -- above is the prerequisite code for utilizing the fetch method
 fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=' + nyt_meatball, {
@@ -60,6 +60,7 @@ fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json
         event.preventDefault();
         var zip = $("#zip").val().trim();
         var radius = $("#radius").val().trim();
+        var meetup_meatball = config.meetup_meatball;
         var meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?&key=" + meetup_meatball + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=" + radius + "&category=18&page=20";
         console.log(meetupURL);
         $.ajax({
@@ -109,6 +110,7 @@ var jsoncall = {
 $("#search-btn").on("click", function displayCategory() {
     event.preventDefault();
     var category = $("#search").val().trim();
+    var google_meatball = config.google_meatball;
     var categoryURL = "https://www.googleapis.com/books/v1/volumes?q=genre=" + category + "&key=" + google_meatball
     console.log(categoryURL);
 
