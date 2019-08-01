@@ -2,8 +2,12 @@ $(document).ready(function(){
     $('.sidenav').sidenav();
     $('.carousel').carousel();
 
+    var nyt_meatball = config.nyt_meatball;
+    var meetup_meatball = config.meetup_meatball;
+    var google_meatball = config.google_meatball;
+
 //API call using fetch -- above is the prerequisite code for utilizing the fetch method
-fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=4x0GxqGa2h5JUfQLcQpyVwHeDLjtsdH0', {
+fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=' + nyt_meatball, {
     
         method: 'GET',
     })
@@ -56,8 +60,7 @@ fetch('https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json
         event.preventDefault();
         var zip = $("#zip").val().trim();
         var radius = $("#radius").val().trim();
-        var key = "4262c23e135a6578766a4f465f3740";
-        var meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?&key=" + key + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=" + radius + "&category=18&page=20";
+        var meetupURL = "https://cors-anywhere.herokuapp.com/https://api.meetup.com/find/groups?&key=" + meetup_meatball + "&sign=true&photo-host=public&zip=" + zip + "&country=us&location=orlando&radius=" + radius + "&category=18&page=20";
         console.log(meetupURL);
         $.ajax({
             url: meetupURL,
@@ -106,7 +109,7 @@ var jsoncall = {
 $("#search-btn").on("click", function displayCategory() {
     event.preventDefault();
     var category = $("#search").val().trim();
-    var categoryURL = "https://www.googleapis.com/books/v1/volumes?q=genre=" + category + "&key=AIzaSyDpeph5_F4Ntlla0XIBk31jDHfD-2p-l8s"
+    var categoryURL = "https://www.googleapis.com/books/v1/volumes?q=genre=" + category + "&key=" + google_meatball
     console.log(categoryURL);
 
     $.ajax({
